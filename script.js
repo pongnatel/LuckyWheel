@@ -55,7 +55,7 @@ $(document).ready(function () {
       clicks++;
       attempts++;
 
-      if (times == 3) {
+      if (times == 2) {
         extraDegree = 35;
         times = 0;
         attempts--;
@@ -115,28 +115,6 @@ $(document).ready(function () {
               } else if(extraDegree>=330 || extraDegree <= 30){
                 $("#winnings").text(`${degreeMapping.six}`);
               }
-              // switch (values[attempts - 1]) {
-              //   case "red":
-              //     $("#winnings").text("Better luck next time");
-              //     // $("#winnings").text("BIGGEST PRIZE: LANDYARDDDDD");
-              //     break;
-              //   case "yellow":
-              //     $("#winnings").text("Wow you win a loofah!");
-              //     break;
-              //   case "blue":
-              //     $("#winnings").text("Greenmart's pen is waiting for you!!!");
-              //     break;
-              //   case "green":
-              //     $("#winnings").text("You have one more spin");
-              //     break;
-              //   case "dark blue":
-              //     $("#winnings").text(
-              //       "Arg, I also want a cup holder. Take yours"
-              //     );
-              //     break;
-              //   default:
-              //     $("#winnings").text("Better luck next time"); // fix bug
-              // }
             }
         );
 
