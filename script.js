@@ -26,7 +26,7 @@ $(document).ready(function () {
       //var extraDegree = [Math.floor(scam[attempts])];
       var extraDegree = Math.floor(scam[attempts] * 100);
       big = false;
-      if (attempts == 15) {
+      if (attempts == 11) {
         times++;
         attempts = 0;
       }
