@@ -6,38 +6,16 @@ var attempts = 0;
 var times = 0;
 var degreeMapping = {
   one: "BIGGEST PRIZE: LANDYARDDDDD",
-  two: "Wow you win a loofah!",
-  three: "Arg, I also want a cup holder. Take yours",
-  four: "Greenmart's pen is waiting for you!!!",
+  two: "You have one more spin",
+  three: "Wow you win a wooden coaster!",
+  four: "BIGGEST PRIZE: MINI POUCH",
   five: "You have one more spin",
-  six: "Better luck next time",
+  six: "Wow you win a wooden coaster!",
 };
 var big = false;
 
 let scam = [
-  3.5, 1.4, 3.1, 1.15, 0.2, 3.1, 1.2, 3.1, 0.95, 0.1, 2.8, 1.6, 1.2, 3.8, 1.2, 0.1, 3.2 ,2.3, 3.5, 1.45
-];
-let values = [
-  "red",
-  "yellow",
-  "green",
-  "yellow",
-  "red",
-  "green",
-  "yellow",
-  "green",
-  "yellow",
-  "red",
-  "green",
-  "dark blue",
-  "yellow",
-  "red",
-  "yellow",
-  "red",
-  "green",
-  "blue",
-  "red",
-  "yellow"
+  1.6, 1.4, 3.5, 1.4, 3.5, 1.6, 1.4, 3.5, 1.4, 3.5, 1.6, 1.4, 1.4, 3.5, 3.5,
 ];
 
 $(document).ready(function () {
@@ -47,22 +25,48 @@ $(document).ready(function () {
       $("#winnings").text("");
       //var extraDegree = [Math.floor(scam[attempts])];
       var extraDegree = Math.floor(scam[attempts] * 100);
-      if (attempts == 20){
+      big = false;
+      if (attempts == 15) {
         times++;
-        attempts = 0
+        attempts = 0;
       }
       //add 1 every click
       clicks++;
       attempts++;
 
+      //landyard after 30 spins
       if (times == 2) {
         extraDegree = 35;
+        attempts--;
+        times++;
+        big = true;
+      }
+
+      //mini pouch after 30 spins
+      if (times == 5) {
+        extraDegree = 250;
         times = 0;
         attempts--;
+        big = true;
       }
 
       var newDegree = degree * clicks;
       totalDegree = newDegree + extraDegree;
+
+      // log result
+      if (extraDegree > 30 && extraDegree <= 90) {
+        console.log("Landyard");
+      } else if (extraDegree > 90 && extraDegree <= 150) {
+        console.log("spin");
+      } else if (extraDegree > 150 && extraDegree <= 210) {
+        console.log("lot ly");
+      } else if (extraDegree > 210 && extraDegree <= 270) {
+        console.log("Mini pouch");
+      } else if (extraDegree > 270 && extraDegree <= 330) {
+        console.log("spin");
+      } else if (extraDegree >= 330 || extraDegree <= 30) {
+        console.log("lot ly");
+      }
 
       /*let's make the spin btn to tilt every
 		time the edge of the section hits 
@@ -104,24 +108,28 @@ $(document).ready(function () {
           function () {
             if (extraDegree > 30 && extraDegree <= 90) {
               $("#winnings").text(`${degreeMapping.one}`);
-              } else if (extraDegree > 90 && extraDegree <= 150) {
+              console.log("Landyard");
+            } else if (extraDegree > 90 && extraDegree <= 150) {
               $("#winnings").text(`${degreeMapping.two}`);
-              } else if (extraDegree > 150 && extraDegree <= 210) {
+              console.log("spin");
+            } else if (extraDegree > 150 && extraDegree <= 210) {
               $("#winnings").text(`${degreeMapping.three}`);
-              } else if (extraDegree > 210 && extraDegree <= 270) {
+              console.log("lot ly");
+            } else if (extraDegree > 210 && extraDegree <= 270) {
               $("#winnings").text(`${degreeMapping.four}`);
-              } else if (extraDegree > 270 && extraDegree <= 330) {
+              console.log("Mini pouch");
+            } else if (extraDegree > 270 && extraDegree <= 330) {
               $("#winnings").text(`${degreeMapping.five}`);
-              } else if(extraDegree>=330 || extraDegree <= 30){
-                $("#winnings").text(`${degreeMapping.six}`);
-              }
+              console.log("spin");
+            } else if (extraDegree >= 330 || extraDegree <= 30) {
+              $("#winnings").text(`${degreeMapping.six}`);
+              console.log("lot ly");
             }
+          }
         );
 
         noY = t.offset().top;
-        
       });
-
       console.log("attemps: " + attempts);
       console.log("times: " + times);
       console.log(big);
